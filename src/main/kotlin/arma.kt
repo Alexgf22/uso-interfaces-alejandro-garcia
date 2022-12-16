@@ -1,7 +1,7 @@
 open class ArmaDeFuego(
     private var nombre: String,
-    private var municion: Int,
-    private var municionARestar: Int,
+    var municion: Int,
+    var municionARestar: Int,
     private var tipoDeMunicion: String,
     private var danio: Int,
     private var radio: String
@@ -40,7 +40,8 @@ class Pistola(
 ): ArmaDeFuego(nombre,municion, municionARestar, tipoDeMunicion,danio,radio) {
 
     override fun dispara(): Int {
-        return super.dispara()
+        municion -= (municionARestar * 1)
+        return municion
     }
 
     override fun recarga(): Int {
@@ -68,7 +69,8 @@ class Rifle(
 
 
     override fun dispara(): Int {
-        return super.dispara()
+        municion -= (municionARestar * 2)
+        return municion
     }
 
     override fun recarga(): Int {
@@ -93,7 +95,8 @@ class Bazooka(
 
 
     override fun dispara(): Int {
-        return super.dispara()
+        municion -= (municionARestar * 3)
+        return municion
     }
 
     override fun recarga(): Int {
@@ -106,7 +109,11 @@ class Bazooka(
 
 fun main() {
 
+    val pistola1 = Pistola("Glock 17",5,1,"Ligera",20,"Pequeño")
 
+    val rifle1 = Rifle("Rifle de cerrojo",8,1,"Pesada",40,"Amplio")
+
+    val bazooka1 = Bazooka("RA PD 115169A",9,1,"Pesada",200,"Amplio")
 
 
 
