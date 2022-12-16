@@ -1,10 +1,10 @@
 open class ArmaDeFuego(
-    private var nombre: String,
+    var nombre: String,
     var municion: Int,
     var municionARestar: Int,
-    private var tipoDeMunicion: String,
-    private var danio: Int,
-    private var radio: String
+    var tipoDeMunicion: String,
+    var danio: Int,
+    var radio: String
 ) {
 
     init {
@@ -23,7 +23,7 @@ open class ArmaDeFuego(
     }
 
     override fun toString(): String {
-        return "El arma de nombre: $nombre, con municion: $municion, tipo de municion: $tipoDeMunicion, daño: $danio y radio: $radio"
+        return "El arma de nombre: $nombre, con municion: $municion, tipo de municion: $tipoDeMunicion, danio: $danio y radio: $radio"
     }
 
 }
@@ -47,6 +47,8 @@ class Pistola(
     override fun recarga(): Int {
         return super.recarga()
     }
+
+
 
 
 
@@ -78,6 +80,8 @@ class Rifle(
     }
 
 
+
+
 }
 
 
@@ -104,17 +108,41 @@ class Bazooka(
     }
 
 
+
 }
 
 
 fun main() {
 
-    val pistola1 = Pistola("Glock 17",5,1,"Ligera",20,"Pequeño")
+    val pistola1 = Pistola("Glock 17",6,1,"Ligera",20,"Pequeño")
 
-    val rifle1 = Rifle("Rifle de cerrojo",8,1,"Pesada",40,"Amplio")
+    val rifle1 = Rifle("Rifle de cerrojo",18,1,"Pesada",40,"Amplio")
 
-    val bazooka1 = Bazooka("RA PD 115169A",9,1,"Pesada",200,"Amplio")
+    val bazooka1 = Bazooka("Lanzacohetes",22,1,"Pesada",200,"Amplio")
+
+    val armas: MutableList<ArmaDeFuego> = mutableListOf()
+
+    armas.add(pistola1)
+
+    armas.add(rifle1)
+
+    armas.add(bazooka1)
+
+    var armaAleatoria : ArmaDeFuego
+
+    var contador = 0
+
+    val disparoArmas = mutableMapOf<ArmaDeFuego,Int>()
+
+    while(contador < 6) {
+        contador += 1
+        armaAleatoria = armas.random()
+        disparoArmas[armaAleatoria] = armaAleatoria.dispara()
+    }
 
 
+    for(disparo in disparoArmas) {
+        println(disparo)
+    }
 
 }
