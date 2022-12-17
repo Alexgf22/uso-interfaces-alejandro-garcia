@@ -1,30 +1,40 @@
-open class ArmaDeFuego(
-    var nombre: String,
+interface ComportamientoArmas {
+    fun dispara(): String
+
+    fun recarga(): String
+
+}
+
+
+open class ArmaDeFuego (
+    var nombre: String = "",
     var municion: Int,
     var municionARestar: Int,
     var tipoDeMunicion: String,
     var danio: Int,
-    var radio: String
-) {
+    var radio: String = ""
+) :ComportamientoArmas {
 
     init {
         require(radio == "Pequeño" || radio == "Amplio") {"El radio tiene que ser pequeño o amplio"}
     }
 
-    open fun dispara(): Int {
-        municion -= municionARestar
-        return municion
-
+    var disparos = 0
+    override fun dispara(): String {
+        disparos += 1
+        return "Se ha realizado $disparos disparo\n"
     }
 
-    open fun recarga(): Int {
-        municion += 10
-        return municion
+    override fun recarga(): String {
+        return "Se ha recargado el arma"
     }
+
 
     override fun toString(): String {
         return "El arma de nombre: $nombre, con municion: $municion, tipo de municion: $tipoDeMunicion, danio: $danio y radio: $radio"
     }
+
+
 
 }
 
@@ -37,20 +47,17 @@ class Pistola(
     tipoDeMunicion: String,
     danio: Int,
     radio: String
-): ArmaDeFuego(nombre,municion, municionARestar, tipoDeMunicion,danio,radio) {
+): ArmaDeFuego(nombre,municion, municionARestar, tipoDeMunicion,danio,radio) , ComportamientoArmas {
 
-    override fun dispara(): Int {
+    override fun dispara(): String {
         municion -= (municionARestar * 1)
-        return municion
+        return super.dispara() + "La municion actual es $municion"
     }
 
-    override fun recarga(): Int {
-        return super.recarga()
+    override fun recarga(): String {
+        municion += 2
+        return "La municion actual es $municion"
     }
-
-
-
-
 
 
 }
@@ -66,17 +73,18 @@ class Rifle(
     tipoDeMunicion: String,
     danio: Int,
     radio: String
-): ArmaDeFuego(nombre,municion, municionARestar, tipoDeMunicion,danio,radio) {
+): ArmaDeFuego(nombre,municion, municionARestar, tipoDeMunicion,danio,radio) , ComportamientoArmas {
 
 
 
-    override fun dispara(): Int {
+    override fun dispara(): String {
         municion -= (municionARestar * 2)
-        return municion
+        return super.dispara() + "La municion actual es $municion"
     }
 
-    override fun recarga(): Int {
-        return super.recarga()
+    override fun recarga(): String {
+        municion += 4
+        return "La municion actual es $municion"
     }
 
 
@@ -94,17 +102,18 @@ class Bazooka(
     tipoDeMunicion: String,
     danio: Int,
     radio: String
-): ArmaDeFuego(nombre,municion, municionARestar, tipoDeMunicion,danio,radio) {
+): ArmaDeFuego(nombre,municion, municionARestar, tipoDeMunicion,danio,radio) , ComportamientoArmas {
 
 
 
-    override fun dispara(): Int {
+    override fun dispara(): String {
         municion -= (municionARestar * 3)
-        return municion
+        return super.dispara() + "La municion actual es $municion"
     }
 
-    override fun recarga(): Int {
-        return super.recarga()
+    override fun recarga(): String {
+        municion += 6
+        return "La municion actual es $municion"
     }
 
 
@@ -132,7 +141,7 @@ fun main() {
 
     var contador = 0
 
-    val disparoArmas = mutableMapOf<ArmaDeFuego,Int>()
+    val disparoArmas = mutableMapOf<ArmaDeFuego,String>()
 
     while(contador < 6) {
         contador += 1
@@ -146,3 +155,7 @@ fun main() {
     }
 
 }
+
+
+
+
