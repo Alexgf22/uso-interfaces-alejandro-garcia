@@ -41,12 +41,12 @@ open class ArmaDeFuego (
 
 
 class Pistola(
-    nombre: String,
+    nombre: String = "",
     municion: Int,
     municionARestar: Int,
     tipoDeMunicion: String,
     danio: Int,
-    radio: String
+    radio: String = ""
 ): ArmaDeFuego(nombre,municion, municionARestar, tipoDeMunicion,danio,radio) , ComportamientoArmas {
 
     override fun dispara(): String {
@@ -56,7 +56,7 @@ class Pistola(
 
     override fun recarga(): String {
         municion += 2
-        return "La municion actual es $municion"
+        return "La municion actual tras recargar es $municion"
     }
 
 
@@ -67,12 +67,12 @@ class Pistola(
 
 
 class Rifle(
-    nombre: String,
+    nombre: String = "",
     municion: Int,
     municionARestar: Int,
     tipoDeMunicion: String,
     danio: Int,
-    radio: String
+    radio: String = ""
 ): ArmaDeFuego(nombre,municion, municionARestar, tipoDeMunicion,danio,radio) , ComportamientoArmas {
 
 
@@ -84,7 +84,7 @@ class Rifle(
 
     override fun recarga(): String {
         municion += 4
-        return "La municion actual es $municion"
+        return "La municion actual tras recargar es $municion"
     }
 
 
@@ -96,12 +96,12 @@ class Rifle(
 
 
 class Bazooka(
-    nombre: String,
+    nombre: String = "",
     municion: Int,
     municionARestar: Int,
     tipoDeMunicion: String,
     danio: Int,
-    radio: String
+    radio: String = ""
 ): ArmaDeFuego(nombre,municion, municionARestar, tipoDeMunicion,danio,radio) , ComportamientoArmas {
 
 
@@ -113,7 +113,7 @@ class Bazooka(
 
     override fun recarga(): String {
         municion += 6
-        return "La municion actual es $municion"
+        return "La municion actual tras recargar es $municion"
     }
 
 
@@ -128,6 +128,12 @@ fun main() {
     val rifle1 = Rifle("Rifle de cerrojo",18,1,"Pesada",40,"Amplio")
 
     val bazooka1 = Bazooka("Lanzacohetes",22,1,"Pesada",200,"Amplio")
+
+    println("Pistola: ${pistola1.recarga()}")
+
+    println("Rifle: ${rifle1.recarga()}")
+
+    println("Bazooka: ${bazooka1.recarga()}")
 
     val armas: MutableList<ArmaDeFuego> = mutableListOf()
 
