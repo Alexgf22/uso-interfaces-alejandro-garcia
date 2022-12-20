@@ -1,9 +1,3 @@
-interface ComportamientoArmas {
-    fun dispara(): String
-
-    fun recarga(): String
-
-}
 
 
 open class ArmaDeFuego (
@@ -13,19 +7,19 @@ open class ArmaDeFuego (
     var tipoDeMunicion: String,
     var danio: Int,
     var radio: String = ""
-) :ComportamientoArmas {
+) {
 
     init {
         require(radio == "Pequeño" || radio == "Amplio") {"El radio tiene que ser pequeño o amplio"}
     }
 
     var disparos = 0
-    override fun dispara(): String {
+    open fun dispara(): String {
         disparos += 1
         return "Se ha realizado $disparos disparo\n"
     }
 
-    override fun recarga(): String {
+    open fun recarga(): String {
         return "Se ha recargado el arma"
     }
 
@@ -47,7 +41,7 @@ class Pistola(
     tipoDeMunicion: String,
     danio: Int,
     radio: String = ""
-): ArmaDeFuego(nombre,municion, municionARestar, tipoDeMunicion,danio,radio) , ComportamientoArmas {
+): ArmaDeFuego(nombre,municion, municionARestar, tipoDeMunicion,danio,radio) {
 
     override fun dispara(): String {
         municion -= (municionARestar * 1)
@@ -73,7 +67,7 @@ class Rifle(
     tipoDeMunicion: String,
     danio: Int,
     radio: String = ""
-): ArmaDeFuego(nombre,municion, municionARestar, tipoDeMunicion,danio,radio) , ComportamientoArmas {
+): ArmaDeFuego(nombre,municion, municionARestar, tipoDeMunicion,danio,radio) {
 
 
 
@@ -102,7 +96,7 @@ class Bazooka(
     tipoDeMunicion: String,
     danio: Int,
     radio: String = ""
-): ArmaDeFuego(nombre,municion, municionARestar, tipoDeMunicion,danio,radio) , ComportamientoArmas {
+): ArmaDeFuego(nombre,municion, municionARestar, tipoDeMunicion,danio,radio) {
 
 
 
