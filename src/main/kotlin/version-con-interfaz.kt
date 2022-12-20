@@ -13,7 +13,8 @@ class Bocadillo(
 
     override fun dispara(): String {
         disparosDelObjeto += 1
-        return "Ha realizado $disparosDelObjeto disparo\n"
+        municion -= 1
+        return "Ha realizado $disparosDelObjeto disparo y le quedan $municion balas restantes\n"
     }
 
     override fun toString(): String {
@@ -32,7 +33,8 @@ class Coche(
 
     override fun dispara(): String {
         disparosDelObjeto += 1
-        return "Ha realizado $disparosDelObjeto disparo\n"
+        municion -= 2
+        return "Ha realizado $disparosDelObjeto disparo y le quedan $municion balas restantes\n"
     }
 
 
@@ -52,7 +54,8 @@ class Casa(
 
     override fun dispara(): String {
         disparosDelObjeto += 1
-        return "Ha realizado $disparosDelObjeto disparo\n"
+        municion -= 3
+        return "Ha realizado $disparosDelObjeto disparo y le quedan $municion balas restantes\n"
     }
 
 
@@ -68,9 +71,9 @@ class Casa(
 
 fun main() {
 
-    val coche1 = Coche()
-    val casa1 = Casa()
-    val bocadillo1 = Bocadillo()
+    val coche1 = Coche(5)
+    val casa1 = Casa(8)
+    val bocadillo1 = Bocadillo(10)
 
     val pistola2 = Pistola("Glock 22",8,1,"Ligera",20,"Pequeño")
     val rifle2 = Rifle("Rifle de mirilla",20,1,"Pesada",40,"Amplio")
