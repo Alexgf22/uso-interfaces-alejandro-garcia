@@ -28,11 +28,22 @@ open class ArmaDeFuego (
     }
 
     var disparos = 0
+
+
+    /**
+     * Metodo dispara para indicar cuantas balas se le resta al objeto de comportamiento arma en las
+     * clases hijas y contar los disparos que realiza.
+     */
     override fun dispara(): String {
         disparos += 1
         return "Se ha realizado $disparos disparo\n"
     }
 
+
+    /**
+     * Metodo recarga para indicar cuantas balas se le suma al objeto en las clases
+     * hijas e imprimir que el arma ha recargado.
+     */
     override fun recarga(): String {
         return "Se ha recargado el arma"
     }
