@@ -2,6 +2,8 @@ interface ComportamientoArmas {
     var disparosDelObjeto: Int
 
     fun dispara(): String
+
+
 }
 
 
@@ -10,7 +12,11 @@ class Bocadillo : ComportamientoArmas  {
 
     override fun dispara(): String {
         disparosDelObjeto += 1
-        return "Se ha realizado $disparosDelObjeto disparo\n"
+        return "Ha realizado $disparosDelObjeto disparo\n"
+    }
+
+    override fun toString(): String {
+        return "El objeto bocadillo "
     }
 
 
@@ -23,7 +29,12 @@ class Coche : ComportamientoArmas  {
 
     override fun dispara(): String {
         disparosDelObjeto += 1
-        return "Se ha realizado $disparosDelObjeto disparo\n"
+        return "Ha realizado $disparosDelObjeto disparo\n"
+    }
+
+
+    override fun toString(): String {
+        return "El objeto coche "
     }
 
 
@@ -36,7 +47,12 @@ class Casa : ComportamientoArmas  {
 
     override fun dispara(): String {
         disparosDelObjeto += 1
-        return "Se ha realizado $disparosDelObjeto disparo\n"
+        return "Ha realizado $disparosDelObjeto disparo\n"
+    }
+
+
+    override fun toString(): String {
+        return "El objeto casa "
     }
 
 }
@@ -47,39 +63,33 @@ class Casa : ComportamientoArmas  {
 
 fun main() {
 
-    val pistola2 = Pistola("Glock 22",6,1,"Ligera",20,"Pequeño")
-
-    val rifle2 = Rifle("Rifle de mirilla",18,1,"Pesada",40,"Amplio")
-
-    val bazooka2 = Bazooka("Bazooka",22,1,"Pesada",200,"Amplio")
-
-    println("Pistola : ${pistola2.recarga()}")
-
-    println("Rifle : ${rifle2.recarga()}")
-
-    println("Bazooka : ${bazooka2.recarga()}")
+    val coche1 = Coche()
+    val casa1 = Casa()
+    val bocadillo1 = Bocadillo()
 
     val objetosQueDisparan = mutableListOf<ComportamientoArmas>()
 
-    //disparosAleatorios.add()
+    objetosQueDisparan.add(coche1)
+    objetosQueDisparan.add(casa1)
+    objetosQueDisparan.add(bocadillo1)
 
     var disparoRandom : ComportamientoArmas
 
     var contadorNuevo = 0
 
-    var disparosAleatorios = mutableListOf<ComportamientoArmas>()
+    val disparosAleatorios = mutableMapOf<ComportamientoArmas,String>()
 
 
-    //while(contadorNuevo < 6) {
-        //contadorNuevo += 1
-        //armaAleatoria = armas.random()
-        //disparoArmas[armaAleatoria] = armaAleatoria.dispara()
-    //}
+    while(contadorNuevo < 6) {
+        contadorNuevo += 1
+        disparoRandom = objetosQueDisparan.random()
+        disparosAleatorios[disparoRandom] = disparoRandom.dispara()
+    }
 
 
-    //for(disparo in disparoArmas) {
-        //println(disparo)
-    //}
+    for(disparo in disparosAleatorios) {
+        println(disparo)
+    }
 
 
 }
