@@ -8,14 +8,14 @@ open class ArmaDeFuego (
     var tipoDeMunicion: String,
     var danio: Int,
     var radio: String = ""
-) {
+): ComportamientoArmas {
 
     init {
         require(radio == "Pequeño" || radio == "Amplio") {"El radio tiene que ser pequeño o amplio"}
     }
 
     var disparos = 0
-    open fun dispara(): String {
+    override fun dispara(): String {
         disparos += 1
         return "Se ha realizado $disparos disparo\n"
     }
@@ -140,12 +140,11 @@ fun main() {
 
     var armaAleatoria : ArmaDeFuego
 
-    var contador = 0
+    //var contador = 0
 
     val disparoArmas = mutableMapOf<ArmaDeFuego,String>()
 
-    while(contador < 6) {
-        contador += 1
+    for(paso in 1..6) {
         armaAleatoria = armas.random()
         disparoArmas[armaAleatoria] = armaAleatoria.dispara()
     }
