@@ -1,11 +1,26 @@
+/**
+ * La interfaz ComportamientoArmas incluye los metodos dispara y recarga que al no inicializarlos
+ * los tienen que cumplir de manera obligatoria todas las clases que hereden de ella.
+ */
 interface ComportamientoArmas {
 
     fun dispara(): String
+
+    fun recarga(): String
 
 
 }
 
 
+/**
+ * La clase Bocadillo hereda de la interfaz comportamientoArmas por lo que hace un override de sus metodos.
+ * En el metodo dispara va sumando 1 a la variable disparosDelObjeto cada vez que realiza un disparo y va
+ * restando municion segun la clase que sea en este caso 1 bala. En el metodo recarga va sumando las balas
+ * correspondientes en este caso 1. Tambien el metodo toString para diferenciar de que clase proviene.
+ *
+ * @property municion del objeto Bocadillo.
+ *
+ */
 class Bocadillo(
     var municion: Int = 0
 ) : ComportamientoArmas  {
@@ -17,6 +32,11 @@ class Bocadillo(
         return "Ha realizado $disparosDelObjeto disparo y le quedan $municion balas restantes\n"
     }
 
+    override fun recarga(): String {
+        municion += 1
+        return "La municion actual tras recargar es $municion"
+    }
+
     override fun toString(): String {
         return "El objeto bocadillo "
     }
@@ -26,6 +46,15 @@ class Bocadillo(
 }
 
 
+
+/**
+ * La clase Coche hereda de la interfaz comportamientoArmas por lo que hace un override de sus metodos.
+ * En el metodo dispara va sumando 1 a la variable disparosDelObjeto cada vez que realiza un disparo y va
+ * restando municion segun la clase que sea en este caso 2 balas. En el metodo recarga va sumando las balas
+ * correspondientes en este caso 2. Tambien el metodo toString para diferenciar de que clase proviene.
+ *
+ * @property municion del objeto Coche.
+ */
 class Coche(
     var municion: Int = 0
 ) : ComportamientoArmas  {
@@ -35,6 +64,11 @@ class Coche(
         disparosDelObjeto += 1
         municion -= 2
         return "Ha realizado $disparosDelObjeto disparo y le quedan $municion balas restantes\n"
+    }
+
+    override fun recarga(): String {
+        municion += 2
+        return "La municion actual tras recargar es $municion"
     }
 
 
@@ -47,6 +81,15 @@ class Coche(
 
 
 
+
+/**
+ * La clase Casa hereda de la interfaz comportamientoArmas por lo que hace un override de sus metodos.
+ * En el metodo dispara va sumando 1 a la variable disparosDelObjeto cada vez que realiza un disparo y va
+ * restando municion segun la clase que sea en este caso 3 balas. En el metodo recarga va sumando las balas
+ * correspondientes en este caso 3. Tambien el metodo toString para diferenciar de que clase proviene.
+ *
+ * @property municion del objeto Casa.
+ */
 class Casa(
     var municion: Int = 0
 ) : ComportamientoArmas  {
@@ -56,6 +99,11 @@ class Casa(
         disparosDelObjeto += 1
         municion -= 3
         return "Ha realizado $disparosDelObjeto disparo y le quedan $municion balas restantes\n"
+    }
+
+    override fun recarga(): String {
+        municion += 3
+        return "La municion actual tras recargar es $municion"
     }
 
 

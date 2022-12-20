@@ -1,5 +1,18 @@
 /**
+ *  Clase Arma de fuego con sus atributos correspondientes que heredaran las clases hijas y para eso la
+ *  clase tiene que ser open. En primer lugar, creamos un init para indicar que el atributo radio solo puede
+ *  ser pequeno o amplio. Después realizamos un override de los metodos dispara y recarga provenientes de la
+ *  interfaz comportamiento armas la cual tambien heredara las clases hijas que heredan de arma de fuego.
+ *  Ademas el metodo toString donde le decimos como queremos sacar los atributos finales de las armas.
  *
+ *  @property nombre del arma
+ *  @property municion del arma
+ *  @property municionARestar al arma cuando dispara
+ *  @property tipoDeMunicion del arma
+ *  @property danio que haga el arma
+ *  @property radio del arma que puede ser amplio o pequeno.
+ *
+ *  @constructor primario de la clase con los atributos que heredaran todas las clases hijas.
  */
 open class ArmaDeFuego (
     var nombre: String = "",
@@ -20,7 +33,7 @@ open class ArmaDeFuego (
         return "Se ha realizado $disparos disparo\n"
     }
 
-    open fun recarga(): String {
+    override fun recarga(): String {
         return "Se ha recargado el arma"
     }
 
@@ -34,7 +47,10 @@ open class ArmaDeFuego (
 }
 
 
-
+/**
+ * La clase Pistola hereda de Arma de fuego y por tanto tambien todos sus atributos y metodos. Con la diferencia
+ * de que en este caso se especifica la municion que se resta al disparar y la que se suma al recargar.
+ */
 class Pistola(
     nombre: String = "",
     municion: Int,
@@ -58,9 +74,11 @@ class Pistola(
 }
 
 
-
-
-
+/**
+ * La clase Rifle hereda de Arma de fuego y por tanto tambien todos sus atributos y metodos. Con la diferencia
+ * de que en este caso se especifica la municion que se resta al disparar (en este caso el doble)
+ * y la que se suma al recargar.
+ */
 class Rifle(
     nombre: String = "",
     municion: Int,
@@ -88,8 +106,11 @@ class Rifle(
 }
 
 
-
-
+/**
+ * La clase Bazooka hereda de Arma de fuego y por tanto tambien todos sus atributos y metodos. Con la diferencia
+ * de que en este caso se especifica la municion que se resta al disparar (en este caso el triple)
+ * y la que se suma al recargar.
+ */
 class Bazooka(
     nombre: String = "",
     municion: Int,
