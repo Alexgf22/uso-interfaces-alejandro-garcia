@@ -1,5 +1,6 @@
-
-
+/**
+ *
+ */
 open class ArmaDeFuego (
     var nombre: String = "",
     var municion: Int,
